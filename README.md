@@ -16,4 +16,4 @@ This project is deployed on GitHub Pages:
 
 - ADD LINK HERE
 
-[Todo App - Live Demo](https://Majestyk1.github.io/se_project_todo-app/)
+[Todo App - Live Demo](https://majestyk1.github.io/se_project_todo-app/)
