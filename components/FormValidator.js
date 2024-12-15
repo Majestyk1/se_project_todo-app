@@ -8,24 +8,26 @@ class FormValidator {
     this.formEl = formEl;
   }
 
-  hideInputError() {}
+  hideInputError(inputElement) {
+    this.errorElementId = `#${inputElement.id}-error`;
+    this.errorElement = this.formEl.querySelector(this.errorElementId);
+    inputElement.classList.remove(this.inputErrorClass);
+    this.errorElement.classList.remove(this.errorClass);
+    this.errorElement.textContent = "";
+  }
 
   showInputError(inputElement) {
     this.errorElementId = `#${inputElement.id}-error`;
     this.errorElement = this.formEl.querySelector(this.errorElementId);
     inputElement.classList.add(this.inputErrorClass);
-    this.errorElement.textContent = errorMessage;
+    this.errorElement.textContent = inputElement.validationMessage;
     this.errorElement.classList.add(this.errorClass);
   }
 
   checkInputValidity(inputElement) {
+    console.log(inputElement.validity.valid);
     if (!inputElement.validity.valid) {
-      this.showInputError(
-        this.formEl,
-        inputElement,
-        inputElement.validationMessage,
-        this.settings
-      );
+      this.showInputError(inputElement);
     } else {
       this.hideInputError(inputElement);
     }
