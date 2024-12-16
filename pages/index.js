@@ -11,11 +11,22 @@ const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
 const openModal = (modal) => {
+  const handleEscapeKey = (event) => {
+    if (event.key === "Escape") {
+      closeModal(modal);
+    }
+  };
   modal.classList.add("popup_visible");
+  modal._handleEscapeKey = handleEscapeKey;
+  document.addEventListener("keydown", handleEscapeKey);
 };
 
 const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
+  if (modal._handleEscapeKey) {
+    document.removeEventListener("keydown", modal._handleEscapeKey);
+    delete modal._handleEscapeKey;
+  }
 };
 
 // The logic in this function should all be handled in the Todo class.
@@ -56,3 +67,4 @@ initialTodos.forEach((item) => {
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
+newTodoValidator.resetValidation();
