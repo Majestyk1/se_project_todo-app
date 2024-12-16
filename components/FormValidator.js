@@ -48,11 +48,6 @@ class FormValidator {
     }
   }
 
-  // _disableBtn() {
-  //   this.buttonElement.classList.add(this.inactiveButtonClass);
-  //   this.buttonElement.disabled = true;
-  // }
-
   _setEventListeners() {
     this.inputList = Array.from(
       this.formEl.querySelectorAll(this.inputSelector)
@@ -79,9 +74,6 @@ class FormValidator {
   }
 
   resetValidation() {
-    this.inputList.forEach((inputElement) => {
-      console.log(inputElement);
-    });
     this.formEl.reset();
     this._toggleButtonState();
     // this._setEventListeners;
