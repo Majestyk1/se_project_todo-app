@@ -14,7 +14,15 @@ const todosList = document.querySelector(".todos__list");
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: () => {},
+  handleFormSubmit: (inputValues) => {
+    const date = new Date(inputValues);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+    const id = uuidv4();
+    const values = { name, date, id };
+    const todo = generateTodo(values);
+    section.addItem(todo);
+    addTodoPopup.close();
+  },
 });
 
 addTodoPopup.setEventListeners();
@@ -38,31 +46,9 @@ const section = new Section({
 });
 section.renderItems();
 
-const handleEscapeKey = (event) => {
-  if (event.key === "Escape") {
-    const openedModal = document.querySelector(".popup_visible");
-    addTodoPopup.close(openedModal);
-  }
-};
-// const openModal = (modal) => {
-//   modal.classList.add("popup_visible");
-
-//   document.addEventListener("keydown", handleEscapeKey);
-// };
-
-// const closeModal = (modal) => {
-//   modal.classList.remove("popup_visible");
-//   document.removeEventListener("keydown", handleEscapeKey);
-// };
-
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
 });
-
-// addTodoCloseBtn.addEventListener("click", () => {
-//   document.removeEventListener("keydown", handleEscapeKey);
-//   addTodoPopup.close();
-// });
 
 // addTodoForm.addEventListener("submit", (evt) => {
 //   evt.preventDefault();

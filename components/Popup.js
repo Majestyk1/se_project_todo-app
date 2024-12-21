@@ -19,16 +19,13 @@ class Popup {
     document.removeEventListener("keydown", this._handleEscapeClose);
   }
   setEventListeners() {
-    // this._popupCloseBtn.addEventListener("click", () => {
-    //   this.close();
-    // });
     this._popupEl.addEventListener("mousedown", (evt) => {
-      //if the event targets classlist contains "popup__close" or "popup"
-      console.log(evt.target);
-      if (evt.target === ".popup__close" || evt.target === ".popup") {
+      if (
+        evt.target.classList.contains("popup__close") ||
+        evt.target.classList.contains("popup")
+      ) {
         this.close();
       }
-      // then close the modal
     });
   }
 }
