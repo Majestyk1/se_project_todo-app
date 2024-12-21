@@ -14,10 +14,12 @@ class Popup {
     this._popupEl.classList.add("popup_visible");
     document.addEventListener("keydown", this._handleEscapeClose);
   }
+
   close() {
     this._popupEl.classList.remove("popup_visible");
     document.removeEventListener("keydown", this._handleEscapeClose);
   }
+
   setEventListeners() {
     this._popupEl.addEventListener("mousedown", (evt) => {
       if (
